@@ -1,0 +1,7 @@
+{% block body %}
+    <form method="post" action="{{ path('vendor_delete', {'id': vendor.id}) }}" onsubmit="return confirm('Confirma stergerea!!!');">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ vendor.id) }}">
+        <button class="btn btn-danger">Delete</button>
+    </form>
+{% endblock %}
+

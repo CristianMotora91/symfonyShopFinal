@@ -1,0 +1,153 @@
+{% block body %}
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+                            <a class="navbar-brand" href="{{ url('homepage') }}">
+                                <img width="400px" src="{{ asset('images/fishingstore.jpg') }}" alt="logo.png">
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            {{ render(controller('App\\Controller\\SearchController::searchBar')) }}
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-12 bg-success">
+                            <nav class="navbar navbar-expand-lg navbar-light">
+
+                                <nav class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="navbar-nav mr-auto">
+                                        <li class="nav-item dropdown">
+                                            <div class="dropdown">
+                                                <button class="btn btn-success dropdown-toggle" type="button"
+                                                        id="dropdownMenuButton" data-toggle="dropdown"
+                                                        aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                    Categorii
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                                                    {% for category in categories %}
+                                                        <a class="dropdown-item"
+                                                           href="{{ url('category', {'category':category.id}) }}">
+                                                            {{ category.name }}
+                                                            <span class="badge badge-success">{{ category.getProducts()|length }}</span>
+                                                        </a>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <div class="dropdown">
+                                                <button class="btn btn-success dropdown-toggle" type="button"
+                                                        id="dropdownMenuButton" data-toggle="dropdown"
+                                                        aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                    Vanzatori
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    {% for vendor in vendors %}
+                                                        <a class="dropdown-item"
+                                                           href="{{ url('vendor', {'vendor':vendor.id}) }}">
+                                                            {{ vendor.name }}
+                                                            <span class="badge badge-success">{{ vendor.getProducts()|length }}</span>
+                                                        </a>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-light" href="{{ url('contact') }}">Contact</a>
+                                        </li>
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                            <li class="nav-item">
+                                                <a class="nav-link text-light" href="{{ url('admin') }}">Admin page</a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+
+                                    <nav class="navbar navbar-expand-lg ">
+                                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                                            <ul class="navbar-nav">
+                                                {% if app.user %}
+                                                    <li class="nav-item dropdown active">
+                                                        <a class="nav-link dropdown-toggle text-white" href="#"
+                                                           id="navbarDropdownMenuLink" data-toggle="dropdown"
+                                                           aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fa fa-user-o" aria-hidden="true"></i>
+                                                            <b>{{ app.user.firstName }}</b>
+                                                        </a>
+
+                                                        <div class="dropdown-menu "
+                                                             aria-labelledby="navbarDropdownMenuLink">
+                                                            <a class="dropdown-item"
+                                                               href="{{ url('crud_user_profile_index', {'user':app.user.id}) }}">Profilul
+                                                                tau</a>
+                                                            <a class="dropdown-item" href="#"></a>
+                                                            <a class="dropdown-item" href="{{ url('app_logout') }}">Logout</a>
+                                                        </div>
+                                                    </li>
+                                                {% else %}
+                                                    <li class="nav-item dropdown active">
+                                                        <a class="nav-link dropdown-toggle text-white" href="#"
+                                                           id="navbarDropdownMenuLink" data-toggle="dropdown"
+                                                           aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fa fa-user-o" aria-hidden="true"></i>
+                                                            Contul meu
+                                                        </a>
+                                                        <div class="dropdown-menu "
+                                                             aria-labelledby="navbarDropdownMenuLink">
+                                                            <a class="dropdown-item " href="{{ url('app_login') }}">Login</a>
+                                                            <a class="dropdown-item " href="{{ url('app_register') }}">Cont
+                                                                nou</a>
+                                                        </div>
+                                                    </li>
+                                                {% endif %}
+                                                <li class="nav-item dropdown active">
+                                                    <a class="nav-link dropdown-toggle text-white" href="#"
+                                                       id="navbarDropdownMenuLink" data-toggle="dropdown"
+                                                       aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                        Cosul Meu
+                                                        {% if cartService.getCartCount > 0 %}
+                                                            <span class="badge badge-danger">{{ cartService.getCartCount }}</span>
+                                                        {% endif %}
+                                                    </a>
+                                                    {% if cartService.getCartCount > 0 %}
+                                                    <div class="dropdown-menu wd-100"
+                                                         aria-labelledby="navbarDropdownMenuLink">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <a href="{{ url('cart') }}" class="w-100">Detalii
+                                                                        cos</a>
+                                                                    <div class="col-12">
+                                                                        Suma
+                                                                        <span class="badge badge-danger">{{ cartService.getCartTotal }}
+                                                                            RON</span>
+                                                                        {% else %}
+                                                                            <div class="dropdown-menu "
+                                                                                 aria-labelledby="navbarDropdownMenuLink">
+                                                                                <span>Nu ai produse in cos</span>
+                                                                            </div>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </nav>
+                                </nav>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

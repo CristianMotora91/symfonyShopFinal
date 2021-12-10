@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cos cumparaturi{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <small>*extra-reducere de 20% la o cantitate de peste 10 produse de acelasi tip</small>
+                <table class="table">
+                    <tr>
+                        <th>
+                            Nume produs
+                        </th>
+                        <th>
+                            Pret unitar
+                        </th>
+                        <th>
+                            Cantitate
+                        </th>
+                        <th>
+                            Pret
+                        </th>
+                        <th></th>
+
+                    </tr>
+                    {% for cartItem in cart.cartItems %}
+                    <tr>
+                        <td>
+                            {{ cartItem.product.name }}
+                        </td>
+                        <td>
+                            {{ cartItem.product.getFinalPrice }} RON
+                        </td>
+                        <td>
+                            <form action="{{ url('cart_update', {'product':cartItem.product.id}) }}" method="post">
+                                <input type="number" min="1" name="quantity" value="{{ cartItem.quantity }}">
+                                <button class="btn btn-success btn-sm mb-1" type="submit"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+                            </form>
+                        </td>
+                        <td>
+                            {% if cartService.getPromoCartItemTotal(cartItem) != cartService.getCartItemTotal(cartItem) %}
+                                <strike>{{ cartService.getCartItemTotal(cartItem) }} RON</strike>
+                                <hr />
+                            {% endif %}
+                            {{ cartService.getPromoCartItemTotal(cartItem) }} RON
+                        </td>
+                        <td>
+                            <a href="{{ url('cart_delete', {'product':cartItem.product.id}) }}" class="btn btn-danger btn-sm">X</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>
+                            Total: {{ cartService.getCartTotal }} RON
+                            <hr />
+                            {#{{ cartService.getPromoCartTotal }} RON#}
+                        </th>
+                        <th></th>
+                    </tr>
+                </table>
+                {% if cartService.getCartCount > 0 %}
+                    <a href="{{ url('cart_empty')}}" class="btn btn-danger">Goleste cos</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+            </div>
+            <div class="col-4">
+                <a href="{{ url('cart_checkout', {'cart':cart.id}) }}" class="btn btn-primary text-right">Continua</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

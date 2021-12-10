@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block body %}
+    <div class="container-fluid" >
+        <div class="row">
+            <div class="col-12">
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="{{ url('discount') }}"><img src="{{ asset('images/discounts.PNG') }}" class="d-block w-100"/> </a>
+                        </div>
+
+                        <div class="row mt-5">
+                            <div class="col-12">
+                                <h3>Cele mai noi produse</h3>
+                            </div>
+                            {% for product in productsNewest %}
+                                {{ include ('default/product/productCard.html.twig') }}
+                            {% endfor %}
+                        </div>
+
+                        <div class="row mt-5">
+                            <div class="col-12">
+                                <h3>Cele mai noi lansete de feeder</h3>
+                            </div>
+
+                            {% for product in productsRods %}
+                                {{ include ('default/product/productCard.html.twig') }}
+                            {% endfor %}
+
+                        </div>
+
+
+                        <div class="row mt-5">
+                            <div class="col-12">
+                                <h3>Cele mai noi mulinete de feeder</h3>
+                            </div>
+
+                            {% for product in productsReels %}
+                                {{ include ('default/product/productCard.html.twig') }}
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

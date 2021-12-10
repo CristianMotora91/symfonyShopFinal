@@ -1,0 +1,16 @@
+{% block body %}
+    <div class="container">
+        <div class="row mt-5">
+
+            <div class="col-12 ">
+                <a href="{{ path('category_index') }}">back to list</a>
+                {{ include('category/form.html.twig', {'button_label': 'Update'}) }}
+                <div class="col-12">{{ include('category/delete.html.twig') }}</div>
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

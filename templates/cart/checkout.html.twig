@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cos cumparaturi{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 mt-5">
+                <h2>Detalii comanda</h2>
+                <form method="post" action="#">
+                    <div class="form-group">
+                        <label for="address_id">Adresa</label>
+                        <select class="form-control" id="address_id" name="order[addressId]">
+                            <option value="">Adauga adresa noua</option>
+                            {% for address in addresses %}
+                            <option value="{{ address.id }}">{{ address.address }} </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div id="addAddress">
+                        <div class="form-group">
+                            <label for="first_name">Prenume</label>
+                            <input class="form-control" id="first_name" name="address[firstName]" placeholder="Prenume">
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Nume</label>
+                            <input class="form-control" id="last_name" name="address[lastName]" placeholder="Nume">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefon</label>
+                            <input class="form-control" id="phone" name="address[phone]" placeholder="Telefon">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="city">Oras</label>
+                            <input class="form-control" id="city" name="address[city]" placeholder="Oras">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="state">Judet</label>
+                            <select class="form-control" id="state" name="address[state]">
+                                <option value="dolj">Dolj</option>
+                                <option value="Olt">Olt</option>
+                                <option value="gorj">Gorj</option>
+                                <option value="mehedinti">Mehedinti</option>
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Adresa</label>
+                            <textarea class="form-control" id="address" name="address[address]" placeholder="Adresa"></textarea>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="shipping_method">Alege metoda de expediere</label>
+                        <select class="form-control" id="shipping_method" name="order[shippingMethod]">
+                            <option value="posta">Posta romana</option>
+                            <option value="curier">Fan Courier</option>
+                            <option value="ridicare">Rdicare personala</option>
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="payment_method">Alege metoda de plata</label>
+                        <select class="form-control" id="payment_method" name="order[paymentMethod]">
+                            <option value="ramburs">Ramburs</option>
+                            <option value="card">Card</option>
+                            <option value="op">OP</option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Finalizeaza comanda</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#address_id').on('change', function (){
+            if ($('#address_id').val() > 0){
+                $('#addAddress').css('display','none');
+            } else {
+                $('#addAddress').css('display','block');
+            }
+        });
+    </script>
+
+{% endblock %}

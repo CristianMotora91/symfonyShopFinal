@@ -1,0 +1,7 @@
+{{  form_start(form,{
+    'attr': {'class': 'form-inline mt-5', 'action': path('handleSearch')}
+})  }}
+    {{ form_widget(form.search, {
+        'attr': {'class':'form-control search-query', 'placeholder': 'Cautare in magazin'}
+    }) }}
+{{ form_end(form)}}

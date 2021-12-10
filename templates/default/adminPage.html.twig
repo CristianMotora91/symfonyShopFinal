@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Page{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-5 mb-2">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">What you can do</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><a href="{{ url('category_index') }}">Add/Delete/Edit Category </a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <<td><a href="{{ url('crud_product_index') }}">Add/Delete/Edit Product </a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td><a href="{{ url('vendor_index') }}">Add/Delete/Edit Vendor </a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td><a href="{{ url('crud_user_index') }}">Add/Delete/Edit User </a></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

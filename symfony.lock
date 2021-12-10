@@ -74,7 +74,7 @@
         "version": "3.3.2"
     },
     "doctrine/orm": {
-        "version": "2.10.3"
+        "version": "2.10.2"
     },
     "doctrine/persistence": {
         "version": "2.2.3"
@@ -89,7 +89,7 @@
         "version": "v1.0.5"
     },
     "laminas/laminas-code": {
-        "version": "4.5.0"
+        "version": "4.4.3"
     },
     "monolog/monolog": {
         "version": "1.26.1"
@@ -98,7 +98,7 @@
         "version": "1.10.2"
     },
     "nikic/php-parser": {
-        "version": "v4.13.2"
+        "version": "v4.13.1"
     },
     "phar-io/manifest": {
         "version": "2.0.3"
@@ -116,13 +116,13 @@
         "version": "1.5.1"
     },
     "phpspec/prophecy": {
-        "version": "v1.15.0"
+        "version": "1.14.0"
     },
     "phpunit/php-code-coverage": {
-        "version": "9.2.10"
+        "version": "9.2.9"
     },
     "phpunit/php-file-iterator": {
-        "version": "3.0.6"
+        "version": "3.0.5"
     },
     "phpunit/php-invoker": {
         "version": "3.1.1"
@@ -398,7 +398,7 @@
         "version": "v4.4.30"
     },
     "symfony/phpunit-bridge": {
-        "version": "6.0",
+        "version": "5.3",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "master",
@@ -566,6 +566,9 @@
     },
     "symfony/yaml": {
         "version": "v4.4.34"
+    },
+    "symfonycasts/verify-email-bundle": {
+        "version": "v1.7.0"
     },
     "theseer/tokenizer": {
         "version": "1.2.1"

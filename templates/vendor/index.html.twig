@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}vendor List{% endblock %}
+
+{% block body %}
+
+    <a href="{{ url('admin') }}">< Back</a>
+    <h1>vendor List</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for vendor in vendors %}
+            <tr>
+                <td>{{ vendor.id }}</td>
+                <td>{{ vendor.name }}</td>
+                <td>
+                    <a href="{{ path('vendor_edit', {'id': vendor.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="btn btn-primary"><a href="{{ path('vendor_new') }}" class="text-light">Creeaza un vendor nou</a></div>
+
+
+{% endblock %}
+

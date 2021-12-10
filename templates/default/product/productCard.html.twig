@@ -1,0 +1,17 @@
+{% block content %}
+
+    <div class="col-3 mt-3 px-3  pt-3">
+        <div class="card align-middle w-100">
+            <a href="{{ url('product',{'product':product.id}) }}"><img class="card-img-top" src="{{ asset('images/' ~ product.images.first) }}" alt="{{ product.name }}" style="width: 200px; height: 180px;"></a>
+            <div class="card-body text-center ">
+                <h3 class="card-title">{{ product.name }}</h3>
+                <p><small>Vandut de: <a href={{ url('vendor', {'vendor':product.getVendor().id}) }}>{{ product.getVendor().name }}</a></small></p>
+                <h5>{{ product.price }} <span>Lei</span></h5>
+                <p>(-{{ product.discount }}%)</p>
+                <h4 style="color: red;">{{ product.getFinalPrice() }} <span>Lei</span></h4>
+                <a href="{{ url('cart_add', {'product':product.id}) }}" class="btn btn-success w-100 mt-4">Adauga in Cos</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

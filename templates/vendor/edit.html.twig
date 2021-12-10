@@ -1,0 +1,16 @@
+{% block body %}
+    <div class="container">
+        <div class="row mt-5">
+
+            <div class="col-12 ">
+                <a href="{{ path('vendor_index') }}">back to list</a>
+                {{ include('vendor/form.html.twig', {'button_label': 'Update'}) }}
+                <div class="col-12">{{ include('vendor/delete.html.twig') }}</div>
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

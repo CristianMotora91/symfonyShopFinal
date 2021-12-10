@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block title %}Profilul tau{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row mt-5">
+            <div class="col-12 ">
+                <h2>Profilul tau</h2>
+            </div>
+                <div class="col-12 mt-5">
+                    <h4>Email</h4>
+                    <p>{{ app.user }}</p>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-12 ">
+                    <h4>Prenume</h4>
+                    <p>{{ app.user.firstname }}</p>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-12">
+                    <h4>Nume</h4>
+                    <p>{{ app.user.lastname }}</p>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a href="{{ path('crud_user_profile_edit', {'id': app.user.id}) }}" class="btn btn-primary">Edit your profile</a>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
